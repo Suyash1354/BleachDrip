@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Vogue";
+    src: url(../public/fonts/Vogue.ttf);
+}
+
