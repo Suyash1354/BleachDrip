@@ -15,6 +15,10 @@ const App = () => {
   const hasSeenFirstWhite = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // ✅ Check screen size
   useEffect(() => {
