@@ -3,6 +3,7 @@ import Rukia1 from "../../public/images/Rukia/Rukia1.png";
 import Rukia2 from "../../public/images/Rukia/Rukia2.png";
 import Rukia3 from "../../public/images/Rukia/Rukia3.jpg";
 import { useGSAP } from "@gsap/react";
+import CenterText from "../Components/CenterText";
 
 const Rukia = ({ isActive }) => {
     useGSAP(() => {
@@ -16,6 +17,16 @@ const Rukia = ({ isActive }) => {
       duration: 1,
       ease: "expo.out",
     });
+
+    tl.from(
+        ".CENTER-TEXT",
+        {
+          x: -2000, 
+          duration: 1,
+          ease: "power2.out", 
+        },
+        "0"
+      ) 
 
     tl.from(".Rukia1", {
       x: -800,
@@ -43,6 +54,9 @@ const Rukia = ({ isActive }) => {
   return (
     <>
       <div className={`w-full h-screen bg-[#FBFBFB] relative overflow-hidden ${!isActive ? 'hidden' : ''}`}>
+
+            <CenterText text="MOURIR" color="#EE8ABA" rotation={-2} />
+            
         <div className="VOGUERUKIA flex justify-end mr-6 relative z-30">
           <h1 className='font-["Vogue"] text-[22vw] text-[#EE8ABA] leading-none inline-block'>
             VOGUE

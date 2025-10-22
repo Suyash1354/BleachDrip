@@ -1,88 +1,105 @@
-
-import gsap from "gsap";
+import { useState, useRef, useEffect } from "react";
 import Ichigo from "./pages/Ichigo";
 import Renji from "./pages/Renji";
 import Rukia from "./pages/Rukia";
 import Toshiro from "./pages/Toshiro";
-import { useRef, useState } from "react";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Add this import
+import Byakuya from "./pages/Byakuya";
+import Shinji from "./pages/Shinji";
+import Aizen from "./pages/Aizen";
+import FirstWhite from "./pages/FirstWhite";
 
 const App = () => {
-  
   const [activeSection, setActiveSection] = useState(0);
-  const sectionsRef = useRef([]);
+  const [isDesktop, setIsDesktop] = useState(true);
+  const isScrolling = useRef(false);
+  const hasSeenFirstWhite = useRef(false);
 
-  useGSAP(() => {
-    // Create individual scroll triggers for each section
-    sectionsRef.current.forEach((section, index) => {
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => setActiveSection(index),
-        onEnterBack: () => setActiveSection(index),
-      });
-    });
-
-    // Enable smooth scrolling with snap
-    ScrollTrigger.create({
-      trigger: ".MAIN",
-      start: "top top",
-      end: "bottom bottom",
-      snap: {
-        snapTo: 1 / 3, // Snap to quarters (4 sections)
-        duration: { min: 0.2, max: 0.5 },
-        delay: 0.1,
-        ease: "power1.inOut"
-      }
-    });
+  // ✅ Check screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  return (
-    <>
-      <div className="MAIN w-full">
-        {/* Section 1 - Ichigo */}
-        <div 
-          ref={el => sectionsRef.current[0] = el} 
-          className="w-full h-screen"
-        >
-          <div className="w-full h-screen overflow-hidden fixed top-0 left-0">
-            <Ichigo isActive={activeSection === 0} />
-          </div>
-        </div>
+  // ✅ Common scroll logic (for wheel + keyboard)
+  const changeSection = (direction) => {
+    if (isScrolling.current) return;
+    isScrolling.current = true;
 
-        {/* Section 2 - Renji */}
-        <div 
-          ref={el => sectionsRef.current[1] = el} 
-          className="w-full h-screen"
-        >
-          <div className="w-full h-screen overflow-hidden fixed top-0 left-0">
-            <Renji isActive={activeSection === 1} />
-          </div>
-        </div>
+    setActiveSection((prev) => {
+      if (direction === "down") {
+        if (prev === 0) {
+          hasSeenFirstWhite.current = true;
+          return 1;
+        }
+        if (prev === 7) {
+          // From Aizen → loop to FirstWhite
+          return 0;
+        }
+        return prev + 1;
+      } else {
+        // direction === "up"
+        if (prev === 0) {
+          // From FirstWhite → go back to Aizen
+          return 7;
+        }
+        return prev - 1;
+      }
+    });
 
-        {/* Section 3 - Rukia */}
-        <div 
-          ref={el => sectionsRef.current[2] = el} 
-          className="w-full h-screen"
-        >
-          <div className="w-full h-screen overflow-hidden fixed top-0 left-0">
-            <Rukia isActive={activeSection === 2} />
-          </div>
-        </div>
+    setTimeout(() => {
+      isScrolling.current = false;
+    }, 800);
+  };
 
-        {/* Section 4 - Toshiro */}
-        <div 
-          ref={el => sectionsRef.current[3] = el} 
-          className="w-full h-screen"
-        >
-          <div className="w-full h-screen overflow-hidden fixed top-0 left-0">
-            <Toshiro isActive={activeSection === 3} />
+  // ✅ Handle mouse wheel
+  const handleWheel = (e) => {
+    if (e.deltaY > 0) changeSection("down");
+    else changeSection("up");
+  };
+
+  // ✅ Handle keyboard arrows
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowDown") {
+        changeSection("down");
+      } else if (e.key === "ArrowUp") {
+        changeSection("up");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // ✅ Show overlay on mobile/tablet
+  if (!isDesktop) {
+    return (
+      <div className="w-full h-screen bg-[#FDFDFD] flex items-center justify-center relative overflow-hidden">
+        <div className="w-[110vw] h-screen flex items-center justify-center absolute top-0 left-[-5vw]">
+          <div className="bg-black w-[110vw] flex items-center justify-center text-white font-['Vogue'] text-[3.2vw] h-[4vh] sm:h-[6vh] lg:h-[6vh]">
+            <h1 className="leading-none py-2">DESKTOP EXPERIENCE ONLY</h1>
           </div>
         </div>
       </div>
-    </>
+    );
+  }
+
+  // ✅ Render sections
+  return (
+    <div className="w-full h-screen overflow-hidden" onWheel={handleWheel}>
+      <FirstWhite isActive={activeSection === 0} />
+      <Ichigo isActive={activeSection === 1} />
+      <Renji isActive={activeSection === 2} />
+      <Rukia isActive={activeSection === 3} />
+      <Toshiro isActive={activeSection === 4} />
+      <Byakuya isActive={activeSection === 5} />
+      <Shinji isActive={activeSection === 6} />
+      <Aizen isActive={activeSection === 7} />
+    </div>
   );
 };
 

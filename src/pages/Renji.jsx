@@ -3,11 +3,11 @@ import Renji1 from "../../public/images/Renji/Renji1.png";
 import Renji2 from "../../public/images/Renji/Renji2.png";
 import Renji3 from "../../public/images/Renji/Renji3.jpg";
 import { useGSAP } from "@gsap/react";
+import CenterText from "../Components/CenterText";
 
 const Renji = ({ isActive }) => {
-useGSAP(() => {
+  useGSAP(() => {
     if (!isActive) return;
-
     const tl = gsap.timeline();
 
     tl.from(".VOGUERENJI", {
@@ -15,37 +15,77 @@ useGSAP(() => {
       opacity: 0,
       duration: 1,
       ease: "expo.out",
-    });
+    }
+  
+  );
 
-    tl.from(".Renji1", {
-      x: -400,
-      y: -200,
-      scale: 2,
-      opacity: 0,
-      duration: 1,
-      ease: "expo.out",
-    }, "0");
+  tl.from(
+        ".CENTER-TEXT",
+        {
+          x: -2000, 
+          duration: 1,
+          ease: "power2.out", 
+        },
+        "0"
+      ) 
+    
 
-    tl.from(".Renji2", {
-      x: 400,
-      y: 200,
-      scale: 2,
-      opacity: 0,
-      duration: 1,
-      ease: "expo.out",
-    }, "0");
+    
 
-    tl.from(".Renji3", {
-      y: -400,
-      scale: 2,
-      opacity: 0,
-      duration: 1,
-      ease: "expo.out",
-    }, "0");
-  }, [isActive]);
+    tl.from(
+      ".Renji1",
+      {
+        x: -400,
+        y: -200,
+        scale: 2,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
+        zIndex: 50, // Maintain z-index during animation
+      },
+      "0"
+    );
+
+    
+
+    tl.from(
+      ".Renji2",
+      {
+        x: 400,
+        y: 200,
+        scale: 2,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
+        zIndex: 50, // Maintain z-index during animation
+      },
+      "0"
+    );
+
+    tl.from(
+      ".Renji3",
+      {
+        y: -400,
+        scale: 2,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
+        zIndex: 10, // Maintain z-index during animation
+      },
+      "0"
+    );
+  },[isActive]);
+
   return (
     <>
-      <div className={`w-full h-screen bg-[#E3E3E3] relative overflow-hidden ${!isActive ? 'hidden' : ''}`}>
+      <div
+        className={`w-full h-screen bg-[#E3E3E3] relative overflow-hidden ${
+          !isActive ? "hidden" : ""
+        }`}
+      >
+
+        <CenterText text="VENIR" color="#9C0102" rotation={2} />
+        
         <div className="VOGUERENJI flex justify-center relative z-30">
           <h1 className='font-["Vogue"] text-[32vw] text-[#9C0102] leading-none inline-block'>
             VOGUE

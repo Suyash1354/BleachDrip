@@ -3,6 +3,7 @@ import Toshiro1 from "../../public/images/Toshiro/Toshiro1.png";
 import Toshiro2 from "../../public/images/Toshiro/Toshiro2.png";
 import Toshiro3 from "../../public/images/Toshiro/Toshiro3.jpg";
 import { useGSAP } from "@gsap/react";
+import CenterText from "../Components/CenterText";
 
     const Toshiro = ({ isActive }) => {
     useGSAP(() => {
@@ -16,6 +17,16 @@ import { useGSAP } from "@gsap/react";
       duration: 1,
       ease: "expo.out",
     });
+
+    tl.from(
+        ".CENTER-TEXT",
+        {
+          x: -2000, 
+          duration: 1,
+          ease: "power2.out", 
+        },
+        "0"
+      ) 
 
     tl.from(".Toshiro1", {
       x: -800,
@@ -42,8 +53,11 @@ import { useGSAP } from "@gsap/react";
     return (
         <>
         <div className={`w-full h-screen bg-[#FBFBFB] relative overflow-hidden ${!isActive ? 'hidden' : ''}`}>
+
+          <CenterText text="COURIR" color="#58ABFA" rotation={0} />
+          
             <div className="VOGUETOSHIRO flex justify-start ml-6 mt-16 relative z-10">
-            <h1 className='font-["Vogue"] text-[22vw] text-[#CDDBE6] leading-none inline-block'>
+            <h1 className='font-["Vogue"] text-[22vw] text-[#58ABFA] leading-none inline-block'>
                 VOGUE
             </h1>
             </div>
