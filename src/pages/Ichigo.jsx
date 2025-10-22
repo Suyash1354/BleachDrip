@@ -1,4 +1,4 @@
-import Ichigo1 from "../../public/images/Ichigo/Ichigo11.png";
+import Ichigo1 from "../../public/images/Ichigo/Ichigo1.png";
 import Ichigo2 from "../../public/images/Ichigo/Ichigo22.png";
 import Ichigo4 from "../../public/images/Ichigo/Ichigo4.png";
 import Ichigo3 from "../../public/images/Ichigo/Ichigo3.jpg";
