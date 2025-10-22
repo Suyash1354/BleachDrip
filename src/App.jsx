@@ -13,6 +13,9 @@ const App = () => {
   const [isDesktop, setIsDesktop] = useState(true);
   const isScrolling = useRef(false);
   const hasSeenFirstWhite = useRef(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  
 
   // ✅ Check screen size
   useEffect(() => {
@@ -87,6 +90,19 @@ const App = () => {
       </div>
     );
   }
+
+  if (isLoading) {
+  return (
+    <div className="w-full h-screen flex items-center justify-center bg-black">
+      <img
+        src="/bleach-shinji.gif" // <-- from public folder
+        alt="Shinji Loader"
+        className="w-[200px] h-auto object-contain"
+      />
+    </div>
+  );
+}
+
 
   // ✅ Render sections
   return (
