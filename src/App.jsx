@@ -20,7 +20,7 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // ✅ Check screen size
+
   useEffect(() => {
     const checkScreenSize = () => {
       setIsDesktop(window.innerWidth >= 1024);
@@ -30,7 +30,7 @@ const App = () => {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  // ✅ Common scroll logic (for wheel + keyboard)
+
   const changeSection = (direction) => {
     if (isScrolling.current) return;
     isScrolling.current = true;
@@ -42,14 +42,14 @@ const App = () => {
           return 1;
         }
         if (prev === 7) {
-          // From Aizen → loop to FirstWhite
+
           return 0;
         }
         return prev + 1;
       } else {
-        // direction === "up"
+
         if (prev === 0) {
-          // From FirstWhite → go back to Aizen
+
           return 7;
         }
         return prev - 1;
@@ -61,13 +61,13 @@ const App = () => {
     }, 800);
   };
 
-  // ✅ Handle mouse wheel
+
   const handleWheel = (e) => {
     if (e.deltaY > 0) changeSection("down");
     else changeSection("up");
   };
 
-  // ✅ Handle keyboard arrows
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "ArrowDown") {
@@ -81,7 +81,7 @@ const App = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // ✅ Show overlay on mobile/tablet
+
   if (!isDesktop) {
     return (
       <div className="w-full h-screen bg-[#FDFDFD] flex items-center justify-center relative overflow-hidden">
@@ -107,7 +107,7 @@ const App = () => {
 }
 
 
-  // ✅ Render sections
+  
   return (
     <div className="w-full h-screen overflow-hidden" onWheel={handleWheel}>
       <FirstWhite isActive={activeSection === 0} />

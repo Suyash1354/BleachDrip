@@ -27,7 +27,7 @@ const Aizen = ({ isActive }) => {
         "0"
       )
 
-      // Aizen1 - from LEFT
+      
       .from(
         ".AIZEN1",
         {
@@ -38,7 +38,7 @@ const Aizen = ({ isActive }) => {
         "0"
       )
 
-      // Aizen2 - from RIGHT
+      
       .from(
         ".AIZEN2",
         {
@@ -49,7 +49,7 @@ const Aizen = ({ isActive }) => {
         "0"
       )
 
-      // Aizen3 - from TOP
+      
       .from(
         ".AIZEN3",
         {
@@ -68,33 +68,33 @@ const Aizen = ({ isActive }) => {
           !isActive ? "hidden" : ""
         }`}
       >
-        {/* Center text */}
+        
         <CenterText text="MOURIR" color="#A020F0" rotation={2} />
 
-        {/* Main heading */}
+        
         <div className="VOGUE-AIZEN flex justify-center">
           <h1 className='font-["Vogue"] text-[32vw] text-[#A020F0] leading-none inline-block'>
             VOGUE
           </h1>
         </div>
 
-        {/* Images */}
+        
         <div className="IMAGES">
-          {/* Aizen1 - Left side */}
+          
           <img
             src={Aizen1}
             alt="Aizen1"
             className="AIZEN1 w-[38vw] absolute z-30 bottom-0 left-0 object-cover"
           />
 
-          {/* Aizen2 - Right side */}
+          
           <img
             src={Aizen3}
             alt="Aizen2"
             className="AIZEN2 absolute right-10 bottom-20 w-[25vw] h-[70vh] object-cover z-40  border-8 border-black"
           />
 
-          {/* Aizen3 - Center (from top) */}
+          
           <img
             src={Aizen2}
             alt="Aizen3"

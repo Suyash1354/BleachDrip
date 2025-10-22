@@ -73,21 +73,21 @@ const Byakuya = ({ isActive }) => {
         </div>
 
         <div className="IMAGES">
-          {/* Byakuya1 - Right side, full height */}
+          
           <img
             src={Byakuya1}
             alt="Byakuya1"
             className="BYAKUYA1 h-screen absolute z-30 top-0 right-0 object-cover"
           />
           
-          {/* Byakuya2 - Left bottom */}
+          
           <img
             src={Byakuya2}
             alt="Byakuya2"
             className="BYAKUYA2 absolute left-0 bottom-0 w-[35vw] z-40"
           />
           
-          {/* Byakuya3 - Center, below both images with border */}
+          
           <img
             src={Byakuya3}
             alt="Byakuya3"
