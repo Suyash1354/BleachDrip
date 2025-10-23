@@ -27,7 +27,7 @@ const Shinji = ({ isActive }) => {
       "0"
     )
 
-    // Shinji1 - from TOP
+    
     .from(
       ".SHINJI1",
       {
@@ -38,7 +38,7 @@ const Shinji = ({ isActive }) => {
       "0"
     )
 
-    // Shinji2 - from LEFT
+    
     .from(
       ".SHINJI2",
       {
@@ -49,7 +49,7 @@ const Shinji = ({ isActive }) => {
       "0"
     )
 
-    // Shinji3 - from BOTTOM
+    
     .from(
       ".SHINJI3",
       {
@@ -78,21 +78,21 @@ const Shinji = ({ isActive }) => {
         </div>
 
         <div className="IMAGES">
-          {/* Shinji2 - Left side, from top */}
+          
           <img
             src={Shinji2}
             alt="Shinji2"
             className="SHINJI2 w-[40vw] absolute z-30 bottom-0 left-0 object-cover"
           />
 
-          {/* Shinji1 - Right side, from right */}
+          
           <img
             src={Shinji1}
             alt="Shinji1"
             className="SHINJI1 absolute right-0 bottom-0 w-[30vw] z-40"
           />
 
-          {/* Shinji3 - Center with border */}
+          
           <img
             src={Shinji3}
             alt="Shinji3"

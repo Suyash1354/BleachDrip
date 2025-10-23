@@ -41,7 +41,7 @@ const Renji = ({ isActive }) => {
         opacity: 0,
         duration: 1,
         ease: "expo.out",
-        zIndex: 50, // Maintain z-index during animation
+        zIndex: 50, 
       },
       "0"
     );
@@ -57,7 +57,7 @@ const Renji = ({ isActive }) => {
         opacity: 0,
         duration: 1,
         ease: "expo.out",
-        zIndex: 50, // Maintain z-index during animation
+        zIndex: 50, 
       },
       "0"
     );
@@ -70,7 +70,7 @@ const Renji = ({ isActive }) => {
         opacity: 0,
         duration: 1,
         ease: "expo.out",
-        zIndex: 10, // Maintain z-index during animation
+        zIndex: 10, 
       },
       "0"
     );
